@@ -4,6 +4,10 @@
   margin: 0;
 }
 
+.select{
+  size: 30px;
+}
+
 
 .container {
   display: flex;
