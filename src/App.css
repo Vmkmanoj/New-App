@@ -1,0 +1,41 @@
+/* Mortal.css */
+*{
+  padding: 0;
+  margin: 0;
+}
+
+
+.container {
+  display: flex;
+  flex-wrap: wrap; /* Allows items to wrap onto the next line if necessary */
+  justify-content: center; /* Center all items horizontally */
+  background-color: black; /* Background color for the container */
+  padding: 20px; /* Adds some padding around the container */
+  min-height: 100vh; /* Makes sure the container takes up at least the full height of the viewport */
+}
+
+.news-item {
+  background-color: white; /* Sets background color for each news item */
+  border-radius: 8px; /* Adds rounded corners */
+  overflow: hidden; /* Ensures content does not overflow the container */
+  margin: 16px; /* Adds some space around each news item */
+  width: 300px; /* Sets a fixed width for each news item */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adds a shadow for some depth */
+  display: flex;
+  flex-direction: column; /* Ensures children are stacked vertically */
+  align-items: center; /* Centers items horizontally */
+}
+
+.news-image {
+  width: 100%; /* Ensures image takes up full width of container */
+  height: 200px; /* Sets a fixed height for the image */
+  object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
+}
+
+.news-title {
+  font-size: 1.25rem; /* Sets a larger font size for the title */
+  font-weight: bold; /* Makes the title bold */
+  color: #333; /* Sets a dark color for the title text */
+  padding: 16px; /* Adds padding around the title */
+  text-align: center; /* Centers the title text */
+}
