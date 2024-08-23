@@ -4,8 +4,33 @@
   margin: 0;
 }
 
-.select{
-  size: 30px;
+.select-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.select {
+  width: 200px;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select:hover {
+  border-color: #aaa;
+}
+
+.select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
 
 
@@ -17,6 +42,10 @@
   padding: 20px; /* Adds some padding around the container */
   min-height: 100vh; /* Makes sure the container takes up at least the full height of the viewport */
 }
+
+/* :hover .container{
+  opacity: 0.2;
+} */
 
 .news-item {
   background-color: white; /* Sets background color for each news item */
@@ -35,6 +64,9 @@
   height: 200px; /* Sets a fixed height for the image */
   object-fit: cover; /* Ensures the image covers the container while maintaining aspect ratio */
 }
+/* :hover .news-image{
+  opacity: 0.2;
+} */
 
 .news-title {
   font-size: 1.25rem; /* Sets a larger font size for the title */
