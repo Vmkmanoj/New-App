@@ -1,139 +1,103 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
+import logoNews from "../src/assets/newslogo.png";
 
-function Mortal(){
+function Mortal() {
+  const [news, setNews] = useState([]);
+  const [pageload, setPageload] = useState([]);
+  const [date, setDate] = useState("");
+  const [topics, setTopic] = useState("business headlines");
 
+  const api = async () => {
+    if (topics === "business headlines") {
+      let apikey = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=79052ea9c63248179ef0f6775ae5c728`;
+      let fec = await fetch(apikey);
+      let json = await fec.json();
 
-    const [news,setNews] = useState([]);
+      setNews(json.articles);
+      console.log(json);
+    } else if (topics === "TechCrunch") {
+      let apikey = `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=79052ea9c63248179ef0f6775ae5c728`;
+      let fec = await fetch(apikey);
+      let json = await fec.json();
 
-    const [pageload,setPageload]  = useState([]);
+      setNews(json.articles);
+      console.log(json);
+    } else if (topics === "Apple") {
+      let apikey = `https://newsapi.org/v2/everything?q=apple&from=${date}&to=${date}&sortBy=popularity&apiKey=79052ea9c63248179ef0f6775ae5c728`;
+      let fec = await fetch(apikey);
+      let json = await fec.json();
 
-    const [topics,setTopic] = useState("business headlines");
+      setNews(json.articles);
+      console.log(json);
+    } else if (topics === "Tesla") {
+      let apikey = `https://newsapi.org/v2/everything?q=tesla&from=${date}&sortBy=publishedAt&apiKey=79052ea9c63248179ef0f6775ae5c728`;
+      let fec = await fetch(apikey);
+      let json = await fec.json();
 
-
-    const api = async () =>{
-      
-      if(topics==="business headlines"){
-
-        let apikey = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=79052ea9c63248179ef0f6775ae5c728";
-        let fec = await fetch(apikey);
-        let json = await fec.json()
-  
-        setNews(json.articles);
-        console.log(json)
-
-        console.log(pageload)
-
-        console.log(topics)
-      }else if(topics==="TechCrunch"){
-
-        let apikey = "https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=79052ea9c63248179ef0f6775ae5c728";
-        let fec = await fetch(apikey);
-        let json = await fec.json()
-       
-            setNews(json.articles);
-  
-        console.log(json)
-
-        console.log(pageload)
-
-        console.log(topics)
-
-      }else if(topics==="Apple"){
-
-        let apikey = "https://newsapi.org/v2/everything?q=apple&from=2024-08-22&to=2024-08-22&sortBy=popularity&apiKey=79052ea9c63248179ef0f6775ae5c728";
-        let fec = await fetch(apikey);
-        let json = await fec.json()
-       
-            setNews(json.articles);
-  
-        console.log(json)
-
-        console.log(pageload)
-
-        console.log(topics)
-
-      }else if(topics==="Tesla"){
-
-        let apikey = "https://newsapi.org/v2/everything?q=tesla&from=2024-07-23&sortBy=publishedAt&apiKey=79052ea9c63248179ef0f6775ae5c728";
-        let fec = await fetch(apikey);
-        let json = await fec.json()
-       
-        setNews(json.articles);
-  
-        console.log(json)
-
-        console.log(pageload)
-
-        console.log(topics)
-
-      }
-
+      setNews(json.articles);
+      console.log(json);
     }
+  };
 
-    function handlclick(url){
-        setPageload(url)
-        window.open(url,"_blank")
+  function datechange(event) {
+    let dateinfo = event.target.value;
+    setDate(dateinfo); // Keep the selected date in the state
+  }
 
-    }
+  function handlclick(url) {
+    setPageload(url);
+    window.open(url, "_blank");
+  }
 
+  useEffect(() => {
+    api();
+  }, [topics, date]);
 
-    useEffect(()=>{
-        api(pageload)
-    },[topics])
-
-
-
-
-    return (
-      <div className="Main">
-
-        <div className="select-bar">
-
-<div className="newslogo">
-
-  <img src="" alt="" />
-
-</div>
-
-
-        <select className="select" value={topics} onChange={(e)=>setTopic(e.target.value)}>
-                    <option value="business headlines">business headlines</option>
-                    <option  value="TechCrunch" >TechCrunch</option>
-                    <option  value="Apple" >Apple</option>
-                    <option  value="Tesla">Tesla</option>
-                </select>
-
-
-
-                <div className="dateFinding ">
-
-            <input type="date"/>
-
-
+  return (
+    <div className="Main">
+      <div className="select-bar">
+        <div className="newslogo size-6">
+          <img src={logoNews} alt="logo" className="h-1" />
         </div>
 
-        </div>
+        <select className="select" value={topics} onChange={(e) => setTopic(e.target.value)}>
+          <option value="business headlines">Business Headlines</option>
+          <option value="TechCrunch">TechCrunch</option>
+          <option value="Apple">Apple</option>
+          <option value="Tesla">Tesla</option>
+        </select>
+   
+   {topics === "Tesla"  || topics === "Apple" ?  
+        <div className="dateFinding ">
+          <input
+            type="date"
+            className="datainput"
+            value={date}
+            onChange={(event) => datechange(event)}
+          />
+        </div> : ""  }
+      </div>
 
-        
+      {/* Display the selected date */}
+      <h3>Selected Date: {date}</h3>
 
-        <div className="container">
-              
-          {news.map((article, index) => (
-            <div key={index} className="news-item">
-              
-              <img src={article.urlToImage} onClick={()=>handlclick(article.url)} alt={article.title} className="news-image" />
-              <h2 className="news-title">{article.title}</h2>
-            </div>
-          ))}
-          
-        </div>
+      <div className="container">
+        {news.map((article, index) => (
+          <div key={index} className="news-item">
+            <img
+              src={article.urlToImage}
+              onClick={() => handlclick(article.url)}
+              alt={article.title}
+              className="news-image"
+            />
+            <h2 className="news-title">{article.title}</h2>
+            <h3>Published: {new Date(article.publishedAt).toLocaleDateString()}</h3>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
 
-        </div>
-      );
-    }
-    
-
-
-
-export default Mortal
+export default Mortal;

@@ -4,12 +4,57 @@
   margin: 0;
 }
 
+
 .select-bar {
   display: flex;
   justify-content: space-around;
   align-items: center;
   margin: 20px 0;
 }
+.newslogo {
+  height: auto;
+  width: 150px; /* Adjust width as needed */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.h-1 {
+  width: 100%; /* Ensures image scales properly */
+  height: auto; /* Maintains aspect ratio */
+  border-radius: 10px;
+}
+
+.dateFinding {
+  display: flex;
+  justify-content: center; /* Centers the input horizontally */
+  align-items: center;     /* Centers the input vertically */
+  margin: 20px 0;          /* Adds margin around the container */
+}
+
+.datainput {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;  /* Light border for a clean look */
+  background-color: #fff;  /* White background */
+  color: #333;             /* Dark text color */
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;  /* Smooth transition on focus */
+  cursor: pointer;         /* Cursor changes to pointer */
+}
+
+.datainput:hover {
+  border-color: #aaa;      /* Changes border color on hover */
+}
+
+.datainput:focus {
+  outline: none;
+  border-color: #007bff;   /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Adds a blue glow on focus */
+}
+
+
 
 .select {
   width: 200px;
