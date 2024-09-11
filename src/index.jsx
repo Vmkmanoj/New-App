@@ -12,9 +12,6 @@ function Mortal(){
 
 
     const api = async () =>{
-
-
-
       
       if(topics==="business headlines"){
 
@@ -62,7 +59,7 @@ function Mortal(){
         let fec = await fetch(apikey);
         let json = await fec.json()
        
-            setNews(json.articles);
+        setNews(json.articles);
   
         console.log(json)
 
@@ -93,6 +90,13 @@ function Mortal(){
 
         <div className="select-bar">
 
+<div className="newslogo">
+
+  <img src="" alt="" />
+
+</div>
+
+
         <select className="select" value={topics} onChange={(e)=>setTopic(e.target.value)}>
                     <option value="business headlines">business headlines</option>
                     <option  value="TechCrunch" >TechCrunch</option>
@@ -100,10 +104,18 @@ function Mortal(){
                     <option  value="Tesla">Tesla</option>
                 </select>
 
+
+
+                <div className="dateFinding ">
+
+            <input type="date"/>
+
+
         </div>
 
-             
+        </div>
 
+        
 
         <div className="container">
               
@@ -114,6 +126,7 @@ function Mortal(){
               <h2 className="news-title">{article.title}</h2>
             </div>
           ))}
+          
         </div>
 
         </div>
